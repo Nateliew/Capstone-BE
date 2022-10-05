@@ -38,28 +38,26 @@ module.exports = {
       {
         summary: "Bla bla bla",
         user_id: 1,
+        template_id: 1,
         created_at: new Date(),
         updated_at: new Date(),
       },
       {
         summary: "Yada yada yada",
         user_id: 2,
-        created_at: new Date(),
-        updated_at: new Date(),
-      },
-    ]);
-    await queryInterface.bulkInsert("templates", [
-      {
-        CSS: '{"test":[1,2,3]}',
+        template_id: 2,
         created_at: new Date(),
         updated_at: new Date(),
       },
       {
-        CSS: '{"test":[1,2,3,4]}',
+        summary: "Yada yada yada",
+        user_id: 3,
+        template_id: 1,
         created_at: new Date(),
         updated_at: new Date(),
       },
     ]);
+
     // await queryInterface.bulkInsert("user_infos", [
     //   {
     //     user_id: 1,
@@ -95,7 +93,7 @@ module.exports = {
   },
 
   async down(queryInterface, Sequelize) {
-    await queryInterface.bulkDelete("templates", null, {});
+    // await queryInterface.bulkDelete("templates", null, {});
     await queryInterface.bulkDelete("users", null, {});
     await queryInterface.bulkDelete("cvs", null, {});
   },

@@ -3,32 +3,32 @@ module.exports = function (auth, express) {
 
   const router = express.Router();
   // // importing Routers
-  // const UsersRouter = require("./routers/usersRouter");
-  // const TemplatesRouter = require("./routers/templatesRouter");
+  const UsersRouter = require("./routers/usersRouter");
+  // const CvRouter = require("./routers/cvsRouter");
 
   // // importing Controllers
-  // const UsersController = require("../controllers/usersController");
-  // const TemplatesController = require("../controllers/templatesController");
+  const UsersController = require("../controllers/usersController");
+  // const CvController = require("../controllers/CvController");
 
   // // importing DB
-  // const db = require("../db/models/index");
-  // const { user, templates, info } = db;
+  const db = require("../db/models/index");
+  const { user, cv } = db;
 
   // // initializing Controllers -> note the lowercase for the first word
-  // const usersController = new UsersController(users);
-  // const templatesController = new TemplatesController(
+  const usersController = new UsersController(user);
+  // const CvController = new CvController(
   //   users,
-  //   templates,
+  //   cv,
   //   info
   // );
 
   // // initializing Routers
-  // const usersRouter = new UsersController(usersRouter).routes();
-  // const templatesRouter = new TemplatesRouter(templatesRouter).routes();
+  const usersRouter = new UsersController(usersRouter).routes();
+  // const CvRouter = new CvRouter(CvRouter).routes();
 
   // // enable and use router
-  // router.use("/users", usersRouter);
-  // router.use("/templates", templatesRouter);
+  router.use("/", usersRouter);
+  // router.use("/cv", cvRouter);
 
   return router;
 };

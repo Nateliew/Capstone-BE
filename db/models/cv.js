@@ -10,12 +10,13 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       this.belongsTo(models.user, { through: "user" });
-      this.hasOne(models.template);
+      // this.hasOne(models.template);
     }
   }
   Cv.init(
     {
       summary: DataTypes.STRING,
+      template_id: DataTypes.INTEGER,
     },
     {
       sequelize,

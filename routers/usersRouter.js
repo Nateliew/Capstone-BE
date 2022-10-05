@@ -10,7 +10,7 @@ class UsersRouter {
     router.get("/", this.controller.getAll.bind(this.controller));
     router.post("/", this.controller.insertOneUser.bind(this.controller));
     router.get(
-      "/:templateId",
+      "/:userId/cv",
       this.controller.getUserTemplate.bind(this.controller)
     );
 
