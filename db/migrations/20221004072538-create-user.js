@@ -14,13 +14,16 @@ module.exports = {
       email: {
         type: Sequelize.STRING,
       },
-      keySkills: {
+      key_skill: {
         type: Sequelize.STRING,
       },
-      workExperience: {
+      work_experience: {
         type: Sequelize.STRING,
       },
       education: {
+        type: Sequelize.STRING,
+      },
+      contact: {
         type: Sequelize.STRING,
       },
       created_at: {

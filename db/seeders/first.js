@@ -7,9 +7,10 @@ module.exports = {
         name: "John",
         // last_name: "Doe",
         email: "john@john.com",
-        keySkills: "Javascript",
-        workExperience: "Apple, 5 years, full-stack, In charge of project A",
+        key_skill: "Javascript",
+        work_experience: "Apple, 5 years, full-stack, In charge of project A",
         education: "Bachelor",
+        contact: "90001235",
         created_at: new Date(),
         updated_at: new Date(),
       },
@@ -17,9 +18,10 @@ module.exports = {
         name: "Jane",
         // last_name: "Smith",
         email: "jane@jane.com",
-        keySkills: "CSS",
-        workExperience: "Google, 10 years, front-end, In charge of project B",
+        key_skill: "CSS",
+        work_experience: "Google, 10 years, front-end, In charge of project B",
         education: "Bachelor",
+        contact: "91237890",
         created_at: new Date(),
         updated_at: new Date(),
       },
@@ -27,23 +29,28 @@ module.exports = {
         name: "Jill",
         // last_name: "Brown",
         email: "jill@jill.com",
-        keySkills: "Python",
-        workExperience: "Shopee, 8 years, back-end, In charge of project C",
+        key_skill: "Python",
+        work_experience: "Shopee, 8 years, back-end, In charge of project C",
         education: "Bachelor",
+        contact: "95658905",
         created_at: new Date(),
         updated_at: new Date(),
       },
     ]);
     await queryInterface.bulkInsert("cvs", [
       {
-        summary: "Bla bla bla",
+        summary:
+          "I'm a self-taught web developer focusing on the core web fundamentals - HTML, CSS and JS.",
+        misc: "Created game A",
         user_id: 1,
         template_id: 1,
         created_at: new Date(),
         updated_at: new Date(),
       },
       {
-        summary: "Yada yada yada",
+        summary:
+          "I have attended a bootcamp and am well versed in JS, Python, and CSS.",
+        misc: "Created app X",
         user_id: 2,
         template_id: 2,
         created_at: new Date(),
@@ -51,45 +58,13 @@ module.exports = {
       },
       {
         summary: "Yada yada yada",
+        misc: "Created app C",
         user_id: 3,
         template_id: 1,
         created_at: new Date(),
         updated_at: new Date(),
       },
     ]);
-
-    // await queryInterface.bulkInsert("user_infos", [
-    //   {
-    //     user_id: 1,
-    //     template_id: 1,
-    //     created_at: new Date(),
-    //     updated_at: new Date(),
-    //   },
-    //   {
-    //     user_id: 1,
-    //     template_id: 2,
-    //     created_at: new Date(),
-    //     updated_at: new Date(),
-    //   },
-    //   {
-    //     user_id: 2,
-    //     template_id: 2,
-    //     created_at: new Date(),
-    //     updated_at: new Date(),
-    //   },
-    //   {
-    //     user_id: 3,
-    //     template_id: 1,
-    //     created_at: new Date(),
-    //     updated_at: new Date(),
-    //   },
-    //   {
-    //     user_id: 4,
-    //     template_id: 1,
-    //     created_at: new Date(),
-    //     updated_at: new Date(),
-    //   },
-    // ]);
   },
 
   async down(queryInterface, Sequelize) {

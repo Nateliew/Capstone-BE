@@ -7,26 +7,28 @@ class UsersController extends BaseController {
 
   async insertOneUser(req, res) {
     const { name, email } = req.body;
-    // console.log(req.body);
     try {
-      const user = await this.model.findOrCreate({
-        where: { email: email },
-        defaults: {
-          firstName: name,
-        },
+      // Create new trip
+      const newUser = await this.model.create({
+        name: name,
+        email: email,
       });
-      return res.json(user);
+      return res.json({
+        newUser,
+      });
     } catch (err) {
       return res.status(400).json({ error: true, msg: err });
     }
   }
 
-  // async getTripUsers(req, res) {
-  //   const { tripId } = req.params;
-  //   // console.log(req.body);
+  // async insertOneUser(req, res) {
+  //   const { name, email } = req.body;
   //   try {
-  //     const tripUsers = await this.model.findAll({
-  //       where: { tripId: tripId },
+  //     const user = await this.model.findOrCreate({
+  //       where: { email: email },
+  //       defaults: {
+  //         name: name,
+  //       },
   //     });
   //     return res.json(user);
   //   } catch (err) {
