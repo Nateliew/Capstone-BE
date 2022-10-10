@@ -12,13 +12,14 @@ module.exports = (sequelize, DataTypes) => {
       // this.belongsToMany(models.cv, {
       //   through: "user_cv",
       // });
-      this.hasMany(models.cv);
+      // this.hasMany(models.cv);
     }
   }
   User.init(
     {
       name: DataTypes.STRING,
       email: DataTypes.STRING,
+
       keySkills: DataTypes.JSON,
       workExperience: DataTypes.JSON,
       education: DataTypes.JSON,

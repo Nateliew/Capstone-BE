@@ -19,9 +19,13 @@ module.exports = {
       },
       work_experience: {
         type: Sequelize.JSON,
+
       },
       education: {
         type: Sequelize.JSON,
+      },
+      contact: {
+        type: Sequelize.STRING,
       },
       created_at: {
         allowNull: false,

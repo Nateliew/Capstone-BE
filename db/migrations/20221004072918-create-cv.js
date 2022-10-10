@@ -12,6 +12,9 @@ module.exports = {
       summary: {
         type: Sequelize.STRING,
       },
+      misc: {
+        type: Sequelize.STRING,
+      },
       template_id: {
         type: Sequelize.INTEGER,
       },
