@@ -26,7 +26,8 @@ require("dotenv").config();
 // const userRouter = new UserController(userRouter).routes();
 // const templatesRouter = new TemplatesRouter(templatesRouter).routes();
 
-const PORT = process.env.PORT;
+// const PORT = process.env.PORT;
+const PORT = 8080;
 const app = express();
 
 // Enable CORS access to this server

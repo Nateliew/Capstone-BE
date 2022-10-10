@@ -14,14 +14,14 @@ module.exports = {
       email: {
         type: Sequelize.STRING,
       },
-      keySkills: {
-        type: Sequelize.STRING,
+      key_skill: {
+        type: Sequelize.JSON,
       },
-      workExperience: {
-        type: Sequelize.STRING,
+      work_experience: {
+        type: Sequelize.JSON,
       },
       education: {
-        type: Sequelize.STRING,
+        type: Sequelize.JSON,
       },
       created_at: {
         allowNull: false,
