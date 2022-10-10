@@ -6,12 +6,16 @@ class UsersController extends BaseController {
   }
 
   async insertOneUser(req, res) {
-    const { name, email } = req.body;
+    const { name, email, workExperience, education, contact } = req.body;
     try {
       // Create new trip
       const newUser = await this.model.create({
         name: name,
         email: email,
+        keySkill: workExperience,
+        workExperience: workExperience,
+        education: education,
+        contact: contact,
       });
       return res.json({
         newUser,
