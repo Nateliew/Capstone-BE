@@ -120,14 +120,18 @@ module.exports = {
     ]);
     await queryInterface.bulkInsert("cvs", [
       {
-        summary: "Bla bla bla",
+        summary:
+          "I'm a self-taught web developer focusing on the core web fundamentals - HTML, CSS and JS.",
+        misc: "Created game A",
         user_id: 1,
         template_id: 1,
         created_at: new Date(),
         updated_at: new Date(),
       },
       {
-        summary: "Yada yada yada",
+        summary:
+          "I have attended a bootcamp and am well versed in JS, Python, and CSS.",
+        misc: "Created app X",
         user_id: 2,
         template_id: 2,
         created_at: new Date(),
@@ -135,45 +139,13 @@ module.exports = {
       },
       {
         summary: "Yada yada yada",
+        misc: "Created app C",
         user_id: 3,
         template_id: 1,
         created_at: new Date(),
         updated_at: new Date(),
       },
     ]);
-
-    // await queryInterface.bulkInsert("user_infos", [
-    //   {
-    //     user_id: 1,
-    //     template_id: 1,
-    //     created_at: new Date(),
-    //     updated_at: new Date(),
-    //   },
-    //   {
-    //     user_id: 1,
-    //     template_id: 2,
-    //     created_at: new Date(),
-    //     updated_at: new Date(),
-    //   },
-    //   {
-    //     user_id: 2,
-    //     template_id: 2,
-    //     created_at: new Date(),
-    //     updated_at: new Date(),
-    //   },
-    //   {
-    //     user_id: 3,
-    //     template_id: 1,
-    //     created_at: new Date(),
-    //     updated_at: new Date(),
-    //   },
-    //   {
-    //     user_id: 4,
-    //     template_id: 1,
-    //     created_at: new Date(),
-    //     updated_at: new Date(),
-    //   },
-    // ]);
   },
 
   async down(queryInterface, Sequelize) {
