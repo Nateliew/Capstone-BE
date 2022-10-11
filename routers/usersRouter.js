@@ -7,12 +7,13 @@ class UsersRouter {
   }
 
   routes() {
-    router.get("/", this.controller.getAll.bind(this.controller));
+    router.get("/", this.controller.getAllUsers.bind(this.controller));
     router.post("/", this.controller.insertOneUser.bind(this.controller));
-    router.get(
-      "/:userId/cv",
-      this.controller.getUserTemplate.bind(this.controller)
-    );
+    router.get("/:userId", this.controller.getUser.bind(this.controller));
+    // router.get(
+    //   "/:userId/cv",
+    //   this.controller.getUserTemplate.bind(this.controller)
+    // );
 
     return router;
   }

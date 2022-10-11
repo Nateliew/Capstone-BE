@@ -14,7 +14,7 @@ module.exports = {
       email: {
         type: Sequelize.STRING,
       },
-      key_skill: {
+      key_skills: {
         type: Sequelize.JSON,
       },
       work_experience: {
