@@ -10,10 +10,10 @@ module.exports = function (express) {
 
   // importing DB
   const db = require("../db/models/index");
-  const { user } = db;
+  const { user, cv } = db;
 
   // initializing Controllers -> note the lowercase for the first word
-  const usersController = new UsersController(user);
+  const usersController = new UsersController(user, cv);
 
   // inittializing Routers
   const usersRouter = new UsersRouter(usersController).routes();

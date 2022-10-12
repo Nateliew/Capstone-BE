@@ -1,9 +1,24 @@
 const BaseController = require("./baseController");
 
 class UsersController extends BaseController {
-  constructor(model) {
+  constructor(model, cvModel) {
     super(model);
     this.model = model;
+    this.cvModel = cvModel;
+  }
+
+  async getCV(req, res) {
+    const { userId } = req.params;
+    console.log(userId, req.params, "user id and req params in getCV");
+    try {
+      console.log(this.cvModel, "cv model");
+      const userCv = await this.cvModel.findAll({
+        where: { userId: Number(userId) },
+      });
+      return res.json(userCv);
+    } catch (err) {
+      return res.status(400).json({ error: true, msg: err });
+    }
   }
 
   async insertOneUser(req, res) {
