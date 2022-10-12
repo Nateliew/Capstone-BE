@@ -19,7 +19,6 @@ module.exports = {
       },
       work_experience: {
         type: Sequelize.JSON,
-
       },
       education: {
         type: Sequelize.JSON,
