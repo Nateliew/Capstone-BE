@@ -6,18 +6,21 @@ class UsersController extends BaseController {
   }
 
   async insertOneUser(req, res) {
-    const { name, email, workExperience, education, contact } = req.body;
+    const { name, email, keySkills, workExperience, education, contact } =
+      req.body;
     try {
       // Create new user
       const newUser = await this.model.create({
         name: name,
         email: email,
-        keySkill: education,
+        keySkills: keySkills,
         workExperience: workExperience,
         education: education,
         contact: contact,
       });
-      return res.json(newUser);
+      let parsedData = JSON.parse(newUser);
+      console.log(parsedData, "parsed data new user");
+      return res.send(parsedData);
     } catch (err) {
       return res.status(400).json({ error: true, msg: err });
     }
