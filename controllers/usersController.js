@@ -3,13 +3,14 @@ const BaseController = require("./baseController");
 class UsersController extends BaseController {
   constructor(model) {
     super(model);
+    this.model = model;
   }
 
   async insertOneUser(req, res) {
     const { name, email, keySkills, workExperience, education, contact } =
       req.body;
+    console.log("in insert one user", this.model);
     try {
-      // Create new user
       const newUser = await this.model.create({
         name: name,
         email: email,
@@ -21,6 +22,36 @@ class UsersController extends BaseController {
       let parsedData = JSON.parse(newUser);
       console.log(parsedData, "parsed data new user");
       return res.send(parsedData);
+    } catch (err) {
+      return res.status(400).json({ error: true, msg: err });
+    }
+  }
+
+  getAllUsers = async (req, res) => {
+    try {
+      console.log("in user controller!", this.model);
+      const output = await this.model.findAll();
+      return res.json(output);
+    } catch (err) {
+      return res.status(400).json({ error: true, msg: err });
+    }
+  };
+
+  async getUser(req, res) {
+    const { userId } = req.params;
+    console.log("in get user", userId, req.params);
+    try {
+      const newUser = await this.model.findAll({
+        where: { id: Number(userId) },
+      });
+      console.log(
+        "userid and new user in get user",
+        userId,
+        this.model,
+        newUser
+      );
+
+      return res.json(newUser);
     } catch (err) {
       return res.status(400).json({ error: true, msg: err });
     }
