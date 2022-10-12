@@ -7,10 +7,37 @@ module.exports = {
         name: "John",
         // last_name: "Doe",
         email: "john@john.com",
-        key_skill: "Javascript",
-        work_experience: "Apple, 5 years, full-stack, In charge of project A",
-        education: "Bachelor",
-        contact: "90001235",
+        key_skill: JSON.stringify([
+          { name: "Javascript", description: "im so good at this" },
+        ]),
+        work_experience: JSON.stringify([
+          {
+            place: "apple",
+            description: "i worked at apple",
+            date_started: "date started",
+            date_ended: "date started",
+          },
+          {
+            place: "pear",
+            description: "i worked at pear",
+            date_started: "date started",
+            date_ended: "date started",
+          },
+        ]),
+        education: JSON.stringify([
+          {
+            place: "orange",
+            description: "i studied at orange",
+            date_started: "date started",
+            date_ended: "date started",
+          },
+          {
+            place: "mangosteen",
+            description: "i studied at mangosteen",
+            date_started: "date started",
+            date_ended: "date started",
+          },
+        ]),
         created_at: new Date(),
         updated_at: new Date(),
       },
@@ -18,10 +45,38 @@ module.exports = {
         name: "Jane",
         // last_name: "Smith",
         email: "jane@jane.com",
-        key_skill: "CSS",
-        work_experience: "Google, 10 years, front-end, In charge of project B",
-        education: "Bachelor",
-        contact: "91237890",
+
+        key_skill: JSON.stringify([
+          { name: "CSS", description: "im so good at this" },
+        ]),
+        work_experience: JSON.stringify([
+          {
+            place: "ORANGE",
+            description: "i worked at orange",
+            date_started: "date started",
+            date_ended: "date started",
+          },
+          {
+            place: "durian",
+            description: "i worked at durian",
+            date_started: "date started",
+            date_ended: "date started",
+          },
+        ]),
+        education: JSON.stringify([
+          {
+            place: "orange",
+            description: "i studied at orange",
+            date_started: "date started",
+            date_ended: "date started",
+          },
+          {
+            place: "mangosteen",
+            description: "i studied at mangosteen",
+            date_started: "date started",
+            date_ended: "date started",
+          },
+        ]),
         created_at: new Date(),
         updated_at: new Date(),
       },
@@ -29,10 +84,37 @@ module.exports = {
         name: "Jill",
         // last_name: "Brown",
         email: "jill@jill.com",
-        key_skill: "Python",
-        work_experience: "Shopee, 8 years, back-end, In charge of project C",
-        education: "Bachelor",
-        contact: "95658905",
+        key_skill: JSON.stringify([
+          { name: "Python", description: "im so good at this" },
+        ]),
+        work_experience: JSON.stringify([
+          {
+            place: "corn",
+            description: "i worked at corn",
+            date_started: "date started",
+            date_ended: "date started",
+          },
+          {
+            place: "grape",
+            description: "i worked at grape",
+            date_started: "date started",
+            date_ended: "date started",
+          },
+        ]),
+        education: JSON.stringify([
+          {
+            place: "orange",
+            description: "i studied at orange",
+            date_started: "date started",
+            date_ended: "date started",
+          },
+          {
+            place: "mangosteen",
+            description: "i studied at mangosteen",
+            date_started: "date started",
+            date_ended: "date started",
+          },
+        ]),
         created_at: new Date(),
         updated_at: new Date(),
       },
@@ -68,7 +150,6 @@ module.exports = {
   },
 
   async down(queryInterface, Sequelize) {
-    // await queryInterface.bulkDelete("templates", null, {});
     await queryInterface.bulkDelete("users", null, {});
     await queryInterface.bulkDelete("cvs", null, {});
   },

@@ -15,13 +15,13 @@ module.exports = {
         type: Sequelize.STRING,
       },
       key_skill: {
-        type: Sequelize.STRING,
+        type: Sequelize.JSON,
       },
       work_experience: {
-        type: Sequelize.STRING,
+        type: Sequelize.JSON,
       },
       education: {
-        type: Sequelize.STRING,
+        type: Sequelize.JSON,
       },
       contact: {
         type: Sequelize.STRING,
