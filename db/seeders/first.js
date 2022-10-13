@@ -14,12 +14,14 @@ module.exports = {
         work_experience: JSON.stringify([
           {
             place: "apple",
+            position: "hunky dory",
             description: "i worked at apple",
             date_started: "date started",
             date_ended: "date started",
           },
           {
             place: "pear",
+            position: "semi head honcho",
             description: "i worked at pear",
             date_started: "date started",
             date_ended: "date started",

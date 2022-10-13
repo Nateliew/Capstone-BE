@@ -21,6 +21,42 @@ class UsersController extends BaseController {
     }
   }
 
+  // async addSummaryCV(req, res) {
+  //   console.log(req.body, req.params, "req in add template cv");
+  //   const { userId } = req.params;
+  //   const { summary } = req.body;
+  //   console.log(userId, summary, "user n summary  in add summary cv");
+  //   try {
+  //     console.log(this.cvModel, "cv mdoel in add summary cv");
+  //     const newSummaryCV = await this.cvModel.create({
+  //       userId: userId,
+  //       summary: summary,
+  //       createdAt: new Date(),
+  //       updatedAt: new Date(),
+  //     });
+  //     return res.json(newSummaryCV);
+  //   } catch {
+  //     return res.status(400).json({ error: true, msg: err });
+  //   }
+  // }
+
+  async addTemplateCV(req, res) {
+    console.log(req.body, req.params, "req in add template cv");
+    const { userId } = req.params;
+    const { template_id } = req.body;
+    console.log(userId, template_id, "user n tempalte id in add tempalte cv");
+    try {
+      console.log(this.cvModel, "cv mdoel in add temaplte cv");
+      const newTemplateCV = await this.cvModel.create({
+        userId: userId,
+        template_id: template_id,
+      });
+      return res.json(newTemplateCV);
+    } catch {
+      return res.status(400).json({ error: true, msg: err });
+    }
+  }
+
   async insertOneUser(req, res) {
     const { name, email, keySkills, workExperience, education, contact } =
       req.body;
