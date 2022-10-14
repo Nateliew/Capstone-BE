@@ -7,6 +7,7 @@ module.exports = {
         name: "John",
         // last_name: "Doe",
         email: "john@john.com",
+        contact: "91235870",
         key_skills: JSON.stringify([
           { name: "Javascript", description: "im so good at this" },
         ]),
@@ -45,6 +46,7 @@ module.exports = {
         name: "Jane",
         // last_name: "Smith",
         email: "jane@jane.com",
+        contact: "95536900",
         key_skills: JSON.stringify([
           { name: "CSS", description: "im so good at this" },
         ]),
@@ -83,6 +85,7 @@ module.exports = {
         name: "Jill",
         // last_name: "Brown",
         email: "jill@jill.com",
+        contact: "90805635",
         key_skills: JSON.stringify([
           { name: "Python", description: "im so good at this" },
         ]),

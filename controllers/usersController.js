@@ -1,16 +1,16 @@
 const BaseController = require("./baseController");
 
 class UsersController extends BaseController {
-  constructor(model) {
+  constructor(model, cvModel) {
     super(model);
-    this.model = model;
+    this.cvModel = cvModel;
   }
 
   async insertOneUser(req, res) {
     const { name, email, keySkills, workExperience, education, contact } =
       req.body;
-    console.log("in insert one user", this.model);
     try {
+      // Create new user
       const newUser = await this.model.create({
         name: name,
         email: email,
@@ -19,27 +19,15 @@ class UsersController extends BaseController {
         education: education,
         contact: contact,
       });
-      let parsedData = JSON.parse(newUser);
-      console.log(parsedData, "parsed data new user");
-      return res.send(parsedData);
+      return res.json(newUser);
     } catch (err) {
       return res.status(400).json({ error: true, msg: err });
     }
   }
 
-  getAllUsers = async (req, res) => {
-    try {
-      console.log("in user controller!", this.model);
-      const output = await this.model.findAll();
-      return res.json(output);
-    } catch (err) {
-      return res.status(400).json({ error: true, msg: err });
-    }
-  };
-
   async getUser(req, res) {
     const { userId } = req.params;
-    console.log("in get user", userId, req.params);
+    console.log("Here", userId, req.params);
     try {
       const newUser = await this.model.findAll({
         where: { id: Number(userId) },
@@ -57,20 +45,43 @@ class UsersController extends BaseController {
     }
   }
 
-  // async insertOneUser(req, res) {
-  //   const { name, email } = req.body;
-  //   try {
-  //     const user = await this.model.findOrCreate({
-  //       where: { email: email },
-  //       defaults: {
-  //         name: name,
-  //       },
-  //     });
-  //     return res.json(user);
-  //   } catch (err) {
-  //     return res.status(400).json({ error: true, msg: err });
-  //   }
-  // }
+  async getCV(req, res) {
+    const { userId } = req.params;
+    console.log(userId, req.params, "user id and req params in getCV");
+    try {
+      console.log(this.cvModel, "cv model");
+      const userCv = await this.cvModel.findAll({
+        where: { userId: Number(userId) },
+      });
+      return res.json(userCv);
+    } catch (err) {
+      return res.status(400).json({ error: true, msg: err });
+    }
+  }
+
+  async updateUser(req, res) {
+    const { name, email, contact, keySkills, education } = req.body;
+    const { userId } = req.params;
+    console.log("what is it?", req.body);
+    console.log("userId?", req.params);
+    try {
+      const thisResume = await this.model.findOne({
+        where: { id: userId },
+      });
+      thisResume.set({
+        name: name,
+        email: email,
+        contact: contact,
+        keySkills: keySkills,
+        education: education,
+      });
+      await thisResume.save();
+      return res.json();
+    } catch (err) {
+      console.log(err);
+      return res.status(400).json({ error: true, msg: err });
+    }
+  }
 }
 
 module.exports = UsersController;
