@@ -6,12 +6,49 @@ class UsersController extends BaseController {
     this.cvModel = cvModel;
   }
 
+  async insertNewUser(req, res) {
+    const { name, email } = req.body;
+    // console.log(req.body);
+    try {
+      const user = await this.model.findOrCreate({
+        where: { email: email },
+        defaults: {
+          firstName: name,
+        },
+      });
+      return res.json(user);
+    } catch (err) {
+      return res.status(400).json({ error: true, msg: err });
+    }
+  }
+
+  // async insertOneUser(req, res) {
+  //   const { name, email, keySkills, workExperience, education, contact } =
+  //     req.body;
+  //   try {
+  //     // Create new user
+  //     const newUser = await this.model.create({
+  //       name: name,
+  //       email: email,
+  //       keySkills: keySkills,
+  //       workExperience: workExperience,
+  //       education: education,
+  //       contact: contact,
+  //     });
+  //     return res.json(newUser);
+  //   } catch (err) {
+  //     return res.status(400).json({ error: true, msg: err });
+  //   }
+  // }
+
   async insertOneUser(req, res) {
     const { name, email, keySkills, workExperience, education, contact } =
       req.body;
     try {
-      // Create new user
-      const newUser = await this.model.create({
+      const newResume = await this.model.findOne({
+        where: { id: userId },
+      });
+      newResume.set({
         name: name,
         email: email,
         keySkills: keySkills,
@@ -19,8 +56,10 @@ class UsersController extends BaseController {
         education: education,
         contact: contact,
       });
-      return res.json(newUser);
+      await newResume.save();
+      return res.json();
     } catch (err) {
+      console.log(err);
       return res.status(400).json({ error: true, msg: err });
     }
   }
