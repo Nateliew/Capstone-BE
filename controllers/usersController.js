@@ -44,6 +44,7 @@ class UsersController extends BaseController {
   async insertOneUser(req, res) {
     const { name, email, keySkills, workExperience, education, contact } =
       req.body;
+    console.log(workExperience);
     try {
       const newResume = await this.model.findOne({
         where: { id: userId },
@@ -99,7 +100,8 @@ class UsersController extends BaseController {
   }
 
   async updateUser(req, res) {
-    const { name, email, contact, keySkills, education } = req.body;
+    const { name, email, contact, keySkills, workExperience, education } =
+      req.body;
     const { userId } = req.params;
     console.log("what is it?", req.body);
     console.log("userId?", req.params);
@@ -112,6 +114,7 @@ class UsersController extends BaseController {
         email: email,
         contact: contact,
         keySkills: keySkills,
+        workExperience: workExperience,
         education: education,
       });
       await thisResume.save();
