@@ -4,7 +4,9 @@ require("dotenv").config();
 
 const PORT = process.env.PORT;
 const app = express();
-const router = require("./routers/routes")(express);
+const { auth } = require("express-oauth2-jwt-bearer");
+
+const router = require("./routers/routes")(auth, express);
 
 // Enable CORS access to this server
 app.use(cors());
