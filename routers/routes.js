@@ -1,5 +1,10 @@
-module.exports = function (express) {
+module.exports = function (auth, express) {
   require("dotenv").config();
+
+  const checkJwt = auth({
+    audience: process.env.AUDIENCE,
+    issuerBaseURL: process.env.ISSUER,
+  });
 
   const router = express.Router();
   // importing Routers
@@ -16,7 +21,7 @@ module.exports = function (express) {
   const usersController = new UsersController(user, cv);
 
   // inittializing Routers
-  const usersRouter = new UsersRouter(usersController).routes();
+  const usersRouter = new UsersRouter(usersController, checkJwt).routes();
 
   // // enable and use router
   router.use("/", usersRouter);

@@ -42,8 +42,15 @@ class UsersController extends BaseController {
   // }
 
   async insertOneUser(req, res) {
-    const { name, email, keySkills, workExperience, education, contact } =
-      req.body;
+    const {
+      name,
+      email,
+      keySkills,
+      workExperience,
+      education,
+      contact,
+      image,
+    } = req.body;
     console.log(workExperience);
     try {
       const newResume = await this.model.findOne({
@@ -56,6 +63,7 @@ class UsersController extends BaseController {
         workExperience: workExperience,
         education: education,
         contact: contact,
+        image: image,
       });
       await newResume.save();
       return res.json();
@@ -100,11 +108,18 @@ class UsersController extends BaseController {
   }
 
   async updateUser(req, res) {
-    const { name, email, contact, keySkills, workExperience, education } =
-      req.body;
+    const {
+      name,
+      email,
+      contact,
+      keySkills,
+      workExperience,
+      education,
+      image,
+    } = req.body;
     const { userId } = req.params;
     console.log("what is it?", req.body);
-    console.log("userId?", req.params);
+    // console.log("userId?", req.params);
     try {
       const thisResume = await this.model.findOne({
         where: { id: userId },
@@ -116,6 +131,7 @@ class UsersController extends BaseController {
         keySkills: keySkills,
         workExperience: workExperience,
         education: education,
+        image: image,
       });
       await thisResume.save();
       return res.json();
