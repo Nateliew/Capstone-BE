@@ -8,7 +8,7 @@ class UsersController extends BaseController {
 
   async insertNewUser(req, res) {
     const { name, email } = req.body;
-    // console.log(req.body);
+    console.log("is this running", req.body);
     try {
       const user = await this.model.findOrCreate({
         where: { email: email },
@@ -41,37 +41,36 @@ class UsersController extends BaseController {
   //   }
   // }
 
-  async insertOneUser(req, res) {
-    const {
-      name,
-      email,
-      keySkills,
-      workExperience,
-      education,
-      contact,
-      image,
-    } = req.body;
-    console.log(workExperience);
-    try {
-      const newResume = await this.model.findOne({
-        where: { id: userId },
-      });
-      newResume.set({
-        name: name,
-        email: email,
-        keySkills: keySkills,
-        workExperience: workExperience,
-        education: education,
-        contact: contact,
-        image: image,
-      });
-      await newResume.save();
-      return res.json();
-    } catch (err) {
-      console.log(err);
-      return res.status(400).json({ error: true, msg: err });
-    }
-  }
+  // async insertOneUser(req, res) {
+  //   const {
+  //     name,
+  //     email,
+  //     keySkills,
+  //     workExperience,
+  //     education,
+  //     contact,
+  //     image,
+  //   } = req.body;
+  //   try {
+  //     const newResume = await this.model.findOne({
+  //       where: { id: userId },
+  //     });
+  //     newResume.set({
+  //       name: name,
+  //       email: email,
+  //       keySkills: keySkills,
+  //       workExperience: workExperience,
+  //       education: education,
+  //       contact: contact,
+  //       image: image,
+  //     });
+  //     await newResume.save();
+  //     return res.json();
+  //   } catch (err) {
+  //     console.log(err);
+  //     return res.status(400).json({ error: true, msg: err });
+  //   }
+  // }
 
   async getUser(req, res) {
     const { userId } = req.params;
@@ -118,7 +117,7 @@ class UsersController extends BaseController {
       image,
     } = req.body;
     const { userId } = req.params;
-    console.log("what is it?", req.body);
+    console.log("what is it?", image);
     // console.log("userId?", req.params);
     try {
       const thisResume = await this.model.findOne({
