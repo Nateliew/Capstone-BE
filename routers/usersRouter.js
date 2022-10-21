@@ -14,11 +14,11 @@ class UsersRouter {
       this.auth,
       this.controller.insertNewUser.bind(this.controller)
     );
-    router.post(
-      "/",
-      this.auth,
-      this.controller.insertOneUser.bind(this.controller)
-    );
+    // router.post(
+    //   "/",
+    //   this.auth,
+    //   this.controller.insertOneUser.bind(this.controller)
+    // );
     router.get(
       "/:userId",
       this.auth,
