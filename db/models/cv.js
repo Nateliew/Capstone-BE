@@ -16,7 +16,6 @@ module.exports = (sequelize, DataTypes) => {
   Cv.init(
     {
       summary: DataTypes.STRING,
-      misc: DataTypes.STRING,
       template_id: DataTypes.INTEGER,
     },
     {
