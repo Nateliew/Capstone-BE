@@ -8,12 +8,11 @@ class UsersController extends BaseController {
 
   async insertNewUser(req, res) {
     const { name, email } = req.body;
-    console.log("is this running", req.body);
     try {
       const user = await this.model.findOrCreate({
         where: { email: email },
         defaults: {
-          firstName: name,
+          name: name,
         },
       });
       return res.json(user);
@@ -74,18 +73,10 @@ class UsersController extends BaseController {
 
   async getUser(req, res) {
     const { userId } = req.params;
-    console.log("Here", userId, req.params);
     try {
       const newUser = await this.model.findAll({
         where: { id: Number(userId) },
       });
-      console.log(
-        "userid and new user in get user",
-        userId,
-        this.model,
-        newUser
-      );
-
       return res.json(newUser);
     } catch (err) {
       return res.status(400).json({ error: true, msg: err });
@@ -94,14 +85,39 @@ class UsersController extends BaseController {
 
   async getCV(req, res) {
     const { userId } = req.params;
-    console.log(userId, req.params, "user id and req params in getCV");
+    // console.log(userId, req.params, "user id and req params in getCV");
     try {
-      console.log(this.cvModel, "cv model");
+      // console.log(this.cvModel, "cv model");
       const userCv = await this.cvModel.findAll({
         where: { userId: Number(userId) },
       });
       return res.json(userCv);
     } catch (err) {
+      return res.status(400).json({ error: true, msg: err });
+    }
+  }
+
+  async updateCV(req, res) {
+    const { summary, templateId } = req.body;
+    const { userId } = req.params;
+
+    try {
+      const theCV = await this.cvModel.findOrCreate({
+        where: { userId: userId },
+        defaults: {
+          summary: summary,
+        },
+      });
+      const newCV = await this.cvModel.findOne({
+        where: { userId: userId },
+      });
+      newCV.set({
+        summary: summary,
+      });
+      await newCV.save();
+      return res.json();
+    } catch (err) {
+      console.log(err);
       return res.status(400).json({ error: true, msg: err });
     }
   }
@@ -117,8 +133,6 @@ class UsersController extends BaseController {
       image,
     } = req.body;
     const { userId } = req.params;
-    console.log("what is it?", image);
-    // console.log("userId?", req.params);
     try {
       const thisResume = await this.model.findOne({
         where: { id: userId },

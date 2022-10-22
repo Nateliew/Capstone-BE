@@ -14,11 +14,6 @@ class UsersRouter {
       this.auth,
       this.controller.insertNewUser.bind(this.controller)
     );
-    // router.post(
-    //   "/",
-    //   this.auth,
-    //   this.controller.insertOneUser.bind(this.controller)
-    // );
     router.get(
       "/:userId",
       this.auth,
@@ -33,6 +28,11 @@ class UsersRouter {
       "/:userId/cv",
       this.auth,
       this.controller.getCV.bind(this.controller)
+    );
+    router.put(
+      "/:userId/cv",
+      this.auth,
+      this.controller.updateCV.bind(this.controller)
     );
     return router;
   }
