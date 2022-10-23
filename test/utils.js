@@ -1,5 +1,6 @@
 const { expect } = require("chai");
-const { check, handleChange } = require("../utils");
+const { check } = require("../utils");
+const { user } = require("./userprofile.js");
 
 describe("TEST", () => {
   describe("Check AddTemplate Logic for Summary", () => {
@@ -21,5 +22,23 @@ describe("TEST", () => {
   it("check to see if the test is running case 4", () => {
     const result = check(1, 1);
     expect(result).to.equal("run here 2");
+  });
+
+  describe("Set User Profiles", () => {
+    it("check to see if user profile is set correctly", () => {
+      const result = user(
+        [
+          { id: 1, text: "hi" },
+          { id: 2, text: "2 here" },
+        ],
+        0
+      );
+      // const result = user(1, 0);
+      expect(result).to.equal(null);
+    });
+    // it("check to see if user profile is set correctly, case 2", () => {
+    //   const result = user([{ id: 1, text: "hi" }], 1);
+    //   expect(result).to.equal([{ id: 1, text: "hi" }]);
+    // });
   });
 });
