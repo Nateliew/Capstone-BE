@@ -85,9 +85,7 @@ class UsersController extends BaseController {
 
   async getCV(req, res) {
     const { userId } = req.params;
-    // console.log(userId, req.params, "user id and req params in getCV");
     try {
-      // console.log(this.cvModel, "cv model");
       const userCv = await this.cvModel.findAll({
         where: { userId: Number(userId) },
       });
@@ -100,7 +98,7 @@ class UsersController extends BaseController {
   async updateCV(req, res) {
     const { summary, templateId } = req.body;
     const { userId } = req.params;
-
+    console.log("running", req.body);
     try {
       const theCV = await this.cvModel.findOrCreate({
         where: { userId: userId },
@@ -111,6 +109,7 @@ class UsersController extends BaseController {
       const newCV = await this.cvModel.findOne({
         where: { userId: userId },
       });
+      console.log("this block runs for summary", summary);
       newCV.set({
         summary: summary,
       });
@@ -132,6 +131,7 @@ class UsersController extends BaseController {
       education,
       image,
     } = req.body;
+    console.log(req.body);
     const { userId } = req.params;
     try {
       const thisResume = await this.model.findOne({
