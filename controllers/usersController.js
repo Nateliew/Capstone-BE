@@ -21,56 +21,6 @@ class UsersController extends BaseController {
     }
   }
 
-  // async insertOneUser(req, res) {
-  //   const { name, email, keySkills, workExperience, education, contact } =
-  //     req.body;
-  //   try {
-  //     // Create new user
-  //     const newUser = await this.model.create({
-  //       name: name,
-  //       email: email,
-  //       keySkills: keySkills,
-  //       workExperience: workExperience,
-  //       education: education,
-  //       contact: contact,
-  //     });
-  //     return res.json(newUser);
-  //   } catch (err) {
-  //     return res.status(400).json({ error: true, msg: err });
-  //   }
-  // }
-
-  // async insertOneUser(req, res) {
-  //   const {
-  //     name,
-  //     email,
-  //     keySkills,
-  //     workExperience,
-  //     education,
-  //     contact,
-  //     image,
-  //   } = req.body;
-  //   try {
-  //     const newResume = await this.model.findOne({
-  //       where: { id: userId },
-  //     });
-  //     newResume.set({
-  //       name: name,
-  //       email: email,
-  //       keySkills: keySkills,
-  //       workExperience: workExperience,
-  //       education: education,
-  //       contact: contact,
-  //       image: image,
-  //     });
-  //     await newResume.save();
-  //     return res.json();
-  //   } catch (err) {
-  //     console.log(err);
-  //     return res.status(400).json({ error: true, msg: err });
-  //   }
-  // }
-
   async getUser(req, res) {
     const { userId } = req.params;
     try {
