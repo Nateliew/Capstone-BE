@@ -6,6 +6,7 @@ const user = (allData, userId) => {
       i++;
     }
   }
+  console.log(data);
   return data;
 };
 
