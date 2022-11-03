@@ -15,6 +15,9 @@ module.exports = {
       template_id: {
         type: Sequelize.INTEGER,
       },
+      name: {
+        type: Sequelize.STRING,
+      },
       user_id: {
         type: Sequelize.INTEGER,
         references: {
@@ -22,13 +25,7 @@ module.exports = {
           key: "id",
         },
       },
-      // template_id: {
-      //   type: Sequelize.INTEGER,
-      //   references: {
-      //     model: "templates",
-      //     key: "id",
-      //   },
-      // },
+
       created_at: {
         allowNull: false,
         type: Sequelize.DATE,
