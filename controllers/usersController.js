@@ -23,6 +23,7 @@ class UsersController extends BaseController {
 
   async getUser(req, res) {
     const { userId } = req.params;
+    console.log("here????");
     try {
       const newUser = await this.model.findAll({
         where: { id: Number(userId) },
@@ -35,6 +36,7 @@ class UsersController extends BaseController {
 
   async getCV(req, res) {
     const { userId } = req.params;
+    console.log("this????????");
     try {
       const userCv = await this.cvModel.findAll({
         where: { userId: Number(userId) },
@@ -45,8 +47,40 @@ class UsersController extends BaseController {
     }
   }
 
+  // async getOneCV(req, res) {
+  //   const { userId, cvId } = req.params;
+  //   console.log("why??????", req.params, req.body);
+  //   try {
+  //     const userCv = await this.cvModel.findAll({
+  //       where: { userId: Number(userId), id: Number(cvId) },
+  //     });
+  //     return res.json(userCv);
+  //   } catch (err) {
+  //     return res.status(400).json({ error: true, msg: err });
+  //   }
+  // }
+
+  async addCV(req, res) {
+    const { summary, templateId, name } = req.body;
+    const { userId } = req.params;
+    console.log("template", templateId);
+    try {
+      // Create new trip
+      const newCV = await this.cvModel.create({
+        summary: summary,
+        userId: userId,
+        templateId: templateId,
+        name: name,
+      });
+
+      return res.json(newCV);
+    } catch (err) {
+      return res.status(400).json({ error: true, msg: err });
+    }
+  }
+
   async updateCV(req, res) {
-    const { summary, templateId } = req.body;
+    const { summary, name, cvId } = req.body;
     const { userId } = req.params;
     console.log("running", req.body);
     try {
@@ -54,14 +88,16 @@ class UsersController extends BaseController {
         where: { userId: userId },
         defaults: {
           summary: summary,
+          name: name,
         },
       });
       const newCV = await this.cvModel.findOne({
-        where: { userId: userId },
+        where: { id: cvId },
       });
       console.log("this block runs for summary", summary);
       newCV.set({
         summary: summary,
+        name: name,
       });
       await newCV.save();
       return res.json();
@@ -100,6 +136,26 @@ class UsersController extends BaseController {
       return res.json();
     } catch (err) {
       console.log(err);
+      return res.status(400).json({ error: true, msg: err });
+    }
+  }
+
+  async deleteTemplate(req, res) {
+    const { cvId, templateId } = req.body;
+    console.log(req.body);
+    try {
+      let response = await this.cvModel.destroy({
+        where: {
+          id: Number(cvId),
+        },
+      });
+      const resumes = await this.cvModel.findAll({
+        where: {
+          templateId: Number(templateId),
+        },
+      });
+      return res.json(resumes);
+    } catch (e) {
       return res.status(400).json({ error: true, msg: err });
     }
   }

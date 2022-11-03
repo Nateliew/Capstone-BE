@@ -29,10 +29,25 @@ class UsersRouter {
       this.auth,
       this.controller.getCV.bind(this.controller)
     );
+    // router.get(
+    //   "/:userId/cv/cvId",
+    //   this.auth,
+    //   this.controller.getOneCV.bind(this.controller)
+    // );
+    router.post(
+      "/:userId/cv",
+      this.auth,
+      this.controller.addCV.bind(this.controller)
+    );
     router.put(
       "/:userId/cv",
       this.auth,
       this.controller.updateCV.bind(this.controller)
+    );
+    router.delete(
+      "/:userId/cv",
+      this.auth,
+      this.controller.deleteTemplate.bind(this.controller)
     );
     return router;
   }
