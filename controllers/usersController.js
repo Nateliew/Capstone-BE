@@ -142,18 +142,24 @@ class UsersController extends BaseController {
 
   async deleteTemplate(req, res) {
     const { cvId, templateId } = req.body;
-    console.log(req.body);
+    const { userId } = req.params;
+
+    console.log(req.params);
     try {
       let response = await this.cvModel.destroy({
         where: {
           id: Number(cvId),
         },
       });
+      // const resumes = await this.cvModel.findAll({
+      //   where: {
+      //     templateId: Number(templateId),
+      //   },
+      // });
       const resumes = await this.cvModel.findAll({
-        where: {
-          templateId: Number(templateId),
-        },
+        where: { userId: Number(userId) },
       });
+      console.log(response.data);
       return res.json(resumes);
     } catch (e) {
       return res.status(400).json({ error: true, msg: err });
